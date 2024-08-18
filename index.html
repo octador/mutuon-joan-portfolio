@@ -1,23 +1,38 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!doctype html>
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Particules de Sable</title>
-    <h1 style="text-align: center;">chafi le terrible</h1>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background: #000;
-        }
-        canvas {
-            display: block;
-        }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.3/pixi.min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 </head>
+
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.0/pixi.min.js"></script>
-    <script src="script.js"></script>
+    <script type="module">
+        (async () => {
+            const app = new PIXI.Application({ width: 640, height: 360 });
+            document.body.appendChild(app.view);
+
+            try {
+                await PIXI.Assets.load('images/sample.png'); // Assure-toi que le chemin est correct
+                console.log('Image chargée'); // Vérifie dans la console si l'image est bien chargée
+
+                const sprite = PIXI.Sprite.from('images/sample.png');
+                app.stage.addChild(sprite);
+
+                app.ticker.add(() => {
+                    sprite.rotation += 0.01;
+                });
+            } catch (error) {
+                console.error('Erreur lors du chargement de l\'image:', error);
+            }
+        })();
+
+    </script>
 </body>
+
 </html>
