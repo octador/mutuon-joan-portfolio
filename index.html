@@ -9,20 +9,26 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.3/pixi.min.js"></script>
-</head>
 
-<body>
+    <!-- Lien vers le fichier CSS externe -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Inclure PixiJS via CDN -->
     <script type="module">
+        import { Application, Sprite, Assets } from 'https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.mjs';
+
         (async () => {
-            const app = new PIXI.Application({ width: 640, height: 360 });
+            const app = new Application({ resizeTo: window });
             document.body.appendChild(app.view);
 
             try {
-                await PIXI.Assets.load('images/sample.png'); // Assure-toi que le chemin est correct
-                console.log('Image chargée'); // Vérifie dans la console si l'image est bien chargée
+                await Assets.load('images/sample.png');
+                console.log('Image chargée');
 
-                const sprite = PIXI.Sprite.from('images/sample.png');
+                const sprite = Sprite.from('images/sample.png');
+                sprite.anchor.set(0.5);
+                sprite.x = app.renderer.width / 2;
+                sprite.y = app.renderer.height / 2;
                 app.stage.addChild(sprite);
 
                 app.ticker.add(() => {
@@ -32,8 +38,10 @@
                 console.error('Erreur lors du chargement de l\'image:', error);
             }
         })();
-
     </script>
+</head>
+
+<body>
 </body>
 
 </html>
