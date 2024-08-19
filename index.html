@@ -2,46 +2,67 @@
 <html>
 
 <head>
+    <!-- JavaScript Module -->
+    <script type="module" src="script.js"></script>
+
+    <!-- Favicon and Icons -->
     <link rel="mask-icon" href="favicon/mask-icon.svg" color="#ECC8AE">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="style.css">
+    <link rel="canonical" href="https://www.votre-portfolio.com">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Bienvenue sur le portfolio de Mutuon Joan, développeur junior spécialisé dans le développement d'applications. Actuellement à la recherche d'une alternance en tant que Concepteur Développeur d'Application Bac+3, je suis passionné par la création de solutions web innovantes et par le développement d'applications robustes. Explorez mes projets récents, incluant des applications interactives et des sites dynamiques. Mon objectif est d'approfondir mes compétences en JavaScript, React, HTML/CSS, et gestion de bases de données tout en contribuant à des projets concrets. Contactez-moi pour discuter de collaborations ou d'opportunités d'alternance.">
+    <meta name="keywords"
+        content="développeur junior, concepteur développeur d'application, Bac+3, développement web, JavaScript, React, HTML, CSS, portfolio, projets web, alternance">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Mutuon Joan">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Mutuon Joan - Portfolio Développeur Junior en Recherche d'Alternance">
+    <meta property="og:description"
+        content="Bienvenue sur le portfolio de Mutuon Joan, développeur junior spécialisé dans le développement d'applications. Actuellement à la recherche d'une alternance en tant que Concepteur Développeur d'Application Bac+3. Explorez mes projets récents et contactez-moi pour discuter de collaborations ou d'opportunités d'alternance.">
+    <meta property="og:image" content="https://www.votre-portfolio.com/images/og-image.jpg">
+    <meta property="og:url" content="https://www.votre-portfolio.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mutuon Joan - Portfolio Développeur Junior en Recherche d'Alternance">
+    <meta name="twitter:description"
+        content="Bienvenue sur le portfolio de Mutuon Joan, développeur junior spécialisé dans le développement d'applications. Actuellement à la recherche d'une alternance en tant que Concepteur Développeur d'Application Bac+3. Explorez mes projets récents et contactez-moi pour discuter de collaborations ou d'opportunités d'alternance.">
+    <meta name="twitter:image" content="https://www.votre-portfolio.com/images/twitter-image.jpg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mutuon Joan",
+      "description": "Développeur junior spécialisé dans le développement d'applications, en recherche d'une alternance en tant que Concepteur Développeur d'Application Bac+3.",
+      "url": "https://mutuon-joan-portfolio.netlify.app",
+      "sameAs": "https://www.linkedin.com/in/joan-mutuon123456789/"
+    }
+    </script>
+
+    <!-- Tile and Theme Colors -->
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Lien vers le fichier CSS externe -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Inclure PixiJS via CDN -->
-    <script type="module">
-        import { Application, Sprite, Assets } from 'https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.mjs';
-
-        (async () => {
-            const app = new Application({ resizeTo: window });
-            document.body.appendChild(app.view);
-
-            try {
-                await Assets.load('images/sample.png');
-                console.log('Image chargée');
-
-                const sprite = Sprite.from('images/sample.png');
-                sprite.anchor.set(0.5);
-                sprite.x = app.renderer.width / 2;
-                sprite.y = app.renderer.height / 2;
-                app.stage.addChild(sprite);
-
-                app.ticker.add(() => {
-                    sprite.rotation += 0.01;
-                });
-            } catch (error) {
-                console.error('Erreur lors du chargement de l\'image:', error);
-            }
-        })();
-    </script>
+    <!-- Title -->
+    <title>Mutuon Joan - Portfolio Développeur Junior en Recherche d'Alternance</title>
 </head>
 
+
 <body>
+
 </body>
 
 </html>
