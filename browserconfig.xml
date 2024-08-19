@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <browserconfig>
-  <msapplication-config>
-    <tile>
-      <square150x150logo src="https://mutuon-joan-portfolio.netlify.app/mstile-150x150.png"/>
-      <TileColor>#da532c</TileColor>
-    </tile>
-    <startUrl>https://mutuon-joan-portfolio.netlify.app</startUrl>
-    <name>Mutuon Joan portfolio</name>
-  </msapplication-config>
+    <msapplication>
+        <tile>
+            <square150x150logo src="/mstile-150x150.png"/>
+            <TileColor>#da532c</TileColor>
+        </tile>
+    </msapplication>
 </browserconfig>
