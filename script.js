@@ -25,13 +25,13 @@ import { Application, Graphics } from 'https://cdn.jsdelivr.net/npm/pixi.js@7.x/
 
         // Calculer la nouvelle position en fonction de la direction
         if (movingRight) {
-            rectangle.x += 20; // Vitesse de déplacement (ajustez selon votre besoin)
+            rectangle.x += 2; // Ajustez la vitesse selon vos besoins
             if (rectangle.x >= endPosition) {
                 rectangle.x = endPosition;
                 movingRight = false;
             }
         } else {
-            rectangle.x -= 20; // Vitesse de déplacement (ajustez selon votre besoin)
+            rectangle.x -= 2; // Ajustez la vitesse selon vos besoins
             if (rectangle.x <= startPosition) {
                 rectangle.x = startPosition;
                 movingRight = true;
@@ -47,16 +47,28 @@ import { Application, Graphics } from 'https://cdn.jsdelivr.net/npm/pixi.js@7.x/
         animationFrameId = requestAnimationFrame(animateRectangle);
     }
 
-    function onWheel(event) {
-        // Vérifiez la direction du défilement
-        if (event.deltaY > 0 && !isAnimating) {
-            // Lance l'animation lorsque l'utilisateur fait défiler vers le bas
+    function startAnimation() {
+        if (!isAnimating) {
             isAnimating = true;
             animateRectangle();
         }
     }
 
+    function onWheel(event) {
+        if (event.deltaY > 0 && !isAnimating) {
+            startAnimation();
+        }
+    }
+
+    function onTouchStart(event) {
+        // Détecter le mouvement de glissement sur les dispositifs tactiles
+        if (!isAnimating) {
+            startAnimation();
+        }
+    }
+
     window.addEventListener('wheel', onWheel);
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
 
     window.addEventListener('resize', () => {
         app.renderer.resize(window.innerWidth, window.innerHeight);
