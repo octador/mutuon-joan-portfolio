@@ -14,8 +14,15 @@ import { Application, Graphics } from 'https://cdn.jsdelivr.net/npm/pixi.js@7.x/
     rectangle.endFill();
     app.stage.addChild(rectangle);
 
-    const startPosition = 0;
-    const endPosition = app.screen.width - 50;
+    // Fonction pour mettre à jour les positions du rectangle en fonction de la taille de l'écran
+    function updatePositions() {
+        startPosition = 0;
+        endPosition = app.screen.width - 50;
+    }
+
+    // Initialisation des positions
+    let startPosition = 0;
+    let endPosition = app.screen.width - 50;
     let movingRight = true;
     let animationFrameId = null; // Identifiant de l'animation
     let isAnimating = false; // État de l'animation
@@ -25,13 +32,13 @@ import { Application, Graphics } from 'https://cdn.jsdelivr.net/npm/pixi.js@7.x/
 
         // Calculer la nouvelle position en fonction de la direction
         if (movingRight) {
-            rectangle.x += 20; // Ajustez la vitesse selon vos besoins
+            rectangle.x += 15; // Ajustez la vitesse selon vos besoins
             if (rectangle.x >= endPosition) {
                 rectangle.x = endPosition;
                 movingRight = false;
             }
         } else {
-            rectangle.x -= 20; // Ajustez la vitesse selon vos besoins
+            rectangle.x -= 15; // Ajustez la vitesse selon vos besoins
             if (rectangle.x <= startPosition) {
                 rectangle.x = startPosition;
                 movingRight = true;
@@ -71,9 +78,13 @@ import { Application, Graphics } from 'https://cdn.jsdelivr.net/npm/pixi.js@7.x/
     window.addEventListener('touchstart', onTouchStart, { passive: true });
 
     window.addEventListener('resize', () => {
+        // Redimensionner le renderer pour correspondre à la nouvelle taille de la fenêtre
         app.renderer.resize(window.innerWidth, window.innerHeight);
+
+        // Mettez à jour la hauteur du rectangle pour correspondre à la nouvelle hauteur de l'écran
         rectangle.height = app.screen.height;
-        // Re-calculer endPosition pour la nouvelle largeur de l'écran
-        endPosition = app.screen.width - 50;
+
+        // Mettez à jour les positions de fin en fonction de la nouvelle largeur de l'écran
+        updatePositions();
     });
 })();
