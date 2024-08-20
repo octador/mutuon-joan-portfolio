@@ -25,13 +25,13 @@ import { Application, Graphics } from 'https://cdn.jsdelivr.net/npm/pixi.js@7.x/
 
         // Calculer la nouvelle position en fonction de la direction
         if (movingRight) {
-            rectangle.x += 2; // Ajustez la vitesse selon vos besoins
+            rectangle.x += 20; // Ajustez la vitesse selon vos besoins
             if (rectangle.x >= endPosition) {
                 rectangle.x = endPosition;
                 movingRight = false;
             }
         } else {
-            rectangle.x -= 2; // Ajustez la vitesse selon vos besoins
+            rectangle.x -= 20; // Ajustez la vitesse selon vos besoins
             if (rectangle.x <= startPosition) {
                 rectangle.x = startPosition;
                 movingRight = true;
