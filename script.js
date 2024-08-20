@@ -23,21 +23,6 @@ import { Application, Graphics, Text, TextStyle, Container } from 'https://cdn.j
         container.addChild(title);
         app.stage.addChild(container);
 
-        // Création du masque
-        const mask = new Graphics();
-        mask.beginFill(0x000000); // La couleur du masque n'a pas d'importance
-        mask.drawRect(0, 0, app.renderer.width, app.renderer.height); // Masque couvrant toute la scène
-        mask.endFill();
-
-        // Zone transparente au centre pour le titre
-        mask.beginFill(0x000000, 0); // Zone transparente
-        mask.drawRect(0, app.renderer.height / 2 - 50, app.renderer.width, 100); // Zone du titre
-        mask.endFill();
-
-        // Appliquer le masque au conteneur
-        container.mask = mask;
-        app.stage.addChild(mask);
-
         // Création des grains de sable
         const grains = [];
         const numGrains = 1000; // Nombre de grains de sable
@@ -98,9 +83,8 @@ import { Application, Graphics, Text, TextStyle, Container } from 'https://cdn.j
                 }
             });
 
-            // Si tous les grains ont passé, révéler le titre et arrêter l'animation
+            // Si tous les grains ont passé, arrêter l'animation
             if (allGrainsPassed) {
-                container.mask = null; // Révéler le titre en supprimant le masque
                 app.ticker.stop(); // Arrêter l'animation
             }
         });
@@ -109,7 +93,6 @@ import { Application, Graphics, Text, TextStyle, Container } from 'https://cdn.j
         function updatePositions() {
             title.x = app.renderer.width / 2;
             title.y = app.renderer.height / 2;
-            mask.x = 0; // Réinitialiser la position du masque
         }
 
         // Écouter les événements de redimensionnement
