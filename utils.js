@@ -60,7 +60,7 @@ export function onResize(app, rectangle, startPosition, endPosition) {
 // Fonction pour récupérer et afficher le nombre de scans
 export async function checkScanCount() {
     try {
-        const response = await fetch('https://mutuon-joan-portfolio.netlify.app/functions/track-click');
+        const response = await fetch('https://mutuon-joan-portfolio.netlify.app/netlify/functions/track-click');
         if (response.ok) {
             const data = await response.json();
             console.log(`Nombre de scans récupéré : ${data.count}`);
