@@ -1,5 +1,5 @@
 import { Application, Graphics } from 'https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.mjs';
-import { updatePositions, animateRectangle, startAnimation, onWheel, onTouchStart, onResize } from './utils.js';
+import { updatePositions, animateRectangle, startAnimation, onWheel, onTouchStart, onResize, checkScanCount } from './utils.js';
 
 (async () => {
     const app = new Application({
@@ -26,4 +26,7 @@ import { updatePositions, animateRectangle, startAnimation, onWheel, onTouchStar
     window.addEventListener('touchstart', (event) => onTouchStart(event, app, rectangle, startPosition, endPosition, movingRight, isAnimating, animationFrameId), { passive: true });
     
     window.addEventListener('resize', () => onResize(app, rectangle, startPosition, endPosition));
+
+    // Appeler la fonction pour vérifier le nombre de scans
+    checkScanCount();
 })();

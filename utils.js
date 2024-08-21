@@ -56,3 +56,18 @@ export function onResize(app, rectangle, startPosition, endPosition) {
     rectangle.height = app.screen.height;
     updatePositions(app, startPosition, endPosition);
 }
+
+// Fonction pour récupérer et afficher le nombre de scans
+export async function checkScanCount() {
+    try {
+        const response = await fetch('https://mutuon-joan-portfolio.netlify.app/functions/track-click');
+        if (response.ok) {
+            const data = await response.json();
+            console.log(`Nombre de scans récupéré : ${data.count}`);
+        } else {
+            console.error('Erreur lors de la récupération du nombre de scans');
+        }
+    } catch (error) {
+        console.error('Erreur de connexion:', error);
+    }
+}
