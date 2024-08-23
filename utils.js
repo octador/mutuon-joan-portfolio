@@ -9,6 +9,15 @@ export function updatePositions(app, rectangle) {
     return { startPosition, endPosition };
 }
 
+export function updateFooter(app, footer) {
+    footer.clear(); // Nettoyer les anciens dessins
+    footer.beginFill(0x000FFF); // Nouvelle couleur de fond
+    footer.drawRect(0, 0, app.screen.width, 50); // Largeur et hauteur du footer
+    footer.endFill();
+    footer.x = 0; // Position horizontale
+    footer.y = app.screen.height - 50; // Position verticale (bas de l'écran)
+}
+
 // Fonction pour animer le rectangle
 export function animateRectangle(app, rectangle, startPosition, endPosition) {
     if (!isAnimating) return;
@@ -57,8 +66,6 @@ export function startAnimation(app, rectangle) {
 // Fonction pour gérer l'événement de défilement de la souris
 export function onWheel(event, app, rectangle) {
     if (event.deltaY !== 0) {
-        console.log(event.deltaY);
-        
         startAnimation(app, rectangle);
     }
 }
@@ -71,10 +78,12 @@ export function onTouchStart(event, app, rectangle) {
 }
 
 // Fonction pour redimensionner la fenêtre
-export function onResize(app, rectangle) {
+export function onResize(app, rectangle, footer) {
     app.renderer.resize(window.innerWidth, window.innerHeight);
     rectangle.height = app.screen.height;
 
+    updateFooter(app, footer);
+    
     // Mettre à jour les positions du rectangle en fonction de la nouvelle taille
     const { startPosition, endPosition } = updatePositions(app, rectangle);
     rectangle.x = startPosition; // Réinitialiser la position du rectangle
