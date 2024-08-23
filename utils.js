@@ -17,12 +17,18 @@ export function updateFooter(app, footer) {
     footer.x = 0; // Position horizontale
     footer.y = app.screen.height - 50; // Position verticale (bas de l'écran)
 }
+export function updateFooterText(app, footerText) {
+    footerText.text = 'Copyright © 2023 Joan Mutuon';
+    footerText.x = app.screen.width / 2; // Centrer le texte horizontalement
+    footerText.y = app.screen.height - 50 + 25; // Ajuster la position verticale pour le centrer dans le footer
+    footerText.anchor.set(0.5); // Centrer le texte autour du point d'ancrage
+}
 
 // Fonction pour animer le rectangle
 export function animateRectangle(app, rectangle, startPosition, endPosition) {
     if (!isAnimating) return;
 
-    const speed = 5; // Vitesse de déplacement
+    const speed = 25; // Vitesse de déplacement
     
     if (movingForward) {
         // Si le rectangle se déplace vers l'avant
@@ -78,11 +84,12 @@ export function onTouchStart(event, app, rectangle) {
 }
 
 // Fonction pour redimensionner la fenêtre
-export function onResize(app, rectangle, footer) {
+export function onResize(app, rectangle, footer ,footerText) {
     app.renderer.resize(window.innerWidth, window.innerHeight);
     rectangle.height = app.screen.height;
 
     updateFooter(app, footer);
+    updateFooterText(app, footerText);
     
     // Mettre à jour les positions du rectangle en fonction de la nouvelle taille
     const { startPosition, endPosition } = updatePositions(app, rectangle);
