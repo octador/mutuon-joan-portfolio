@@ -8,8 +8,13 @@ import { updatePositions, animateRectangle, startAnimation, onWheel, onTouchStar
         backgroundColor: 0x617E9C
     });
 
-    document.body.appendChild(app.view);
-
+    const portfolioContainer = document.getElementById('portfolio' );
+    if (portfolioContainer) {
+        portfolioContainer.appendChild(app.view);
+    } else {
+        console.error('L\'élément #portfolio n\'existe pas dans le HTML.');
+        document.body.appendChild(app.view); // Ajouter à body en cas d'absence de #portfolio
+    }
     // Créer un rectangle
     const rectangle = new Graphics();
     rectangle.beginFill(0xFFFFFF);

@@ -57,6 +57,8 @@ export function startAnimation(app, rectangle) {
 // Fonction pour gérer l'événement de défilement de la souris
 export function onWheel(event, app, rectangle) {
     if (event.deltaY !== 0) {
+        console.log(event.deltaY);
+        
         startAnimation(app, rectangle);
     }
 }
