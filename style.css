@@ -1,22 +1,38 @@
-/* style.css */
-
-body {
+html, body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #617E9C;
-    /* Fond de la page */
+    overflow: hidden; /* Masquer les barres de défilement */
+    height: 100%; /* Assurer que le body prend toute la hauteur */
 }
 
-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    /* Assure que le canvas est au-dessus du footer */
+.scroll-container {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: scroll; /* Assurer que le défilement horizontal est possible */
+    overflow-y: hidden; /* Empêcher le défilement vertical */
+    scroll-snap-type: x mandatory; /* Assurer le défilement en snapping */
+    scroll-behavior: smooth; /* Défilement fluide */
+    scrollbar-width: none; /* Masquer la barre de défilement horizontale sur Firefox */
 }
 
+.scroll-container::-webkit-scrollbar {
+    display: none; /* Masquer la barre de défilement horizontale sur les navigateurs Webkit */
+}
 
+.section {
+    flex: 0 0 100vw; /* Chaque section occupe 100% de la largeur de la fenêtre */
+    width: 100vw;
+    height: 100vh; /* Chaque section occupe 100% de la hauteur de la fenêtre */
+    scroll-snap-align: start; /* Aligner chaque section au début du défilement */
+    display: flex; /* Permet de centrer le contenu */
+    justify-content: center; /* Centrer horizontalement le contenu */
+    align-items: center; /* Centrer verticalement le contenu */
+    box-sizing: border-box;
+}
 
+.home { background: #ff9999; }
+.about { background: #99ff99; }
+.projects { background: #9999ff; }
+.contact { background: #ffff99; }

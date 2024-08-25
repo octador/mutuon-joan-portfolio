@@ -1,14 +1,4 @@
-// Variables globales pour l'animation
-let isAnimating = false;
-let movingForward = true; // Assurez-vous que la variable est correctement orthographiée
-
-// Fonction pour mettre à jour les positions du rectangle
-export function updatePositions(app, rectangle) {
-    const startPosition = 0;
-    const endPosition = app.screen.width - rectangle.width;
-    return { startPosition, endPosition };
-}
-
+// utils.js
 export function updateFooter(app, footer) {
     footer.clear(); // Nettoyer les anciens dessins
     footer.beginFill(0x000FFF); // Nouvelle couleur de fond
@@ -17,6 +7,7 @@ export function updateFooter(app, footer) {
     footer.x = 0; // Position horizontale
     footer.y = app.screen.height - 50; // Position verticale (bas de l'écran)
 }
+
 export function updateFooterText(app, footerText) {
     footerText.text = 'Copyright © 2023 Joan Mutuon';
     footerText.x = app.screen.width / 2; // Centrer le texte horizontalement
@@ -24,74 +15,3 @@ export function updateFooterText(app, footerText) {
     footerText.anchor.set(0.5); // Centrer le texte autour du point d'ancrage
 }
 
-// Fonction pour animer le rectangle
-export function animateRectangle(app, rectangle, startPosition, endPosition) {
-    if (!isAnimating) return;
-
-    const speed = 25; // Vitesse de déplacement
-    
-    if (movingForward) {
-        // Si le rectangle se déplace vers l'avant
-        if (rectangle.x < endPosition) {
-            rectangle.x += speed;
-        } else {
-            // Inverser la direction une fois la fin atteinte
-            movingForward = false;
-        }
-    } else {
-        // Si le rectangle se déplace vers l'arrière
-        if (rectangle.x > startPosition) {
-            rectangle.x -= speed;
-        } else {
-            // Inverser la direction une fois le début atteint
-            movingForward = true;
-            isAnimating = false;
-        }
-    }
-
-    app.renderer.render(app.stage);
-    requestAnimationFrame(() => animateRectangle(app, rectangle, startPosition, endPosition));
-}
-
-// Fonction pour démarrer l'animation
-export function startAnimation(app, rectangle) {
-    if (!isAnimating) {
-        isAnimating = true;
-
-        // Mettre à jour les positions du rectangle
-        const { startPosition, endPosition } = updatePositions(app, rectangle);
-
-        // Initialiser la position du rectangle à la position de départ
-        rectangle.x = startPosition;
-
-        // Commencer l'animation
-        animateRectangle(app, rectangle, startPosition, endPosition);
-    }
-}
-
-// Fonction pour gérer l'événement de défilement de la souris
-export function onWheel(event, app, rectangle) {
-    if (event.deltaY !== 0) {
-        startAnimation(app, rectangle);
-    }
-}
-
-// Fonction pour gérer l'événement de toucher sur les dispositifs tactiles
-export function onTouchStart(event, app, rectangle) {
-    if (!isAnimating) {
-        startAnimation(app, rectangle);
-    }
-}
-
-// Fonction pour redimensionner la fenêtre
-export function onResize(app, rectangle, footer ,footerText) {
-    app.renderer.resize(window.innerWidth, window.innerHeight);
-    rectangle.height = app.screen.height;
-
-    updateFooter(app, footer);
-    updateFooterText(app, footerText);
-    
-    // Mettre à jour les positions du rectangle en fonction de la nouvelle taille
-    const { startPosition, endPosition } = updatePositions(app, rectangle);
-    rectangle.x = startPosition; // Réinitialiser la position du rectangle
-}
