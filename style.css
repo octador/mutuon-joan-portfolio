@@ -1,38 +1,25 @@
-html, body {
+body, html {
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Masquer les barres de défilement */
-    height: 100%; /* Assurer que le body prend toute la hauteur */
+    overflow: hidden;
+    height: 100%;
 }
 
 .scroll-container {
     display: flex;
-    flex-direction: row;
-    width: 100vw;
+    width: 400vw; /* Ajustez la largeur selon le nombre total de sections */
     height: 100vh;
-    overflow-x: scroll; /* Assurer que le défilement horizontal est possible */
-    overflow-y: hidden; /* Empêcher le défilement vertical */
-    scroll-snap-type: x mandatory; /* Assurer le défilement en snapping */
-    scroll-behavior: smooth; /* Défilement fluide */
-    scrollbar-width: none; /* Masquer la barre de défilement horizontale sur Firefox */
-}
-
-.scroll-container::-webkit-scrollbar {
-    display: none; /* Masquer la barre de défilement horizontale sur les navigateurs Webkit */
+    overflow: hidden;
+    position: relative; /* Nécessaire pour les animations */
+    transition: transform 1s ease-in-out; /* Animation fluide pour le défilement */
 }
 
 .section {
-    flex: 0 0 100vw; /* Chaque section occupe 100% de la largeur de la fenêtre */
-    width: 100vw;
-    height: 100vh; /* Chaque section occupe 100% de la hauteur de la fenêtre */
-    scroll-snap-align: start; /* Aligner chaque section au début du défilement */
-    display: flex; /* Permet de centrer le contenu */
-    justify-content: center; /* Centrer horizontalement le contenu */
-    align-items: center; /* Centrer verticalement le contenu */
-    box-sizing: border-box;
+    flex: 1 0 100vw;
+    height: 100vh;
 }
 
-.home { background: #ff9999; }
-.about { background: #99ff99; }
-.projects { background: #9999ff; }
-.contact { background: #ffff99; }
+.section:nth-child(1) { background: red; }
+.section:nth-child(2) { background: green; }
+.section:nth-child(3) { background: blue; }
+.section:nth-child(4) { background: yellow; } /* Ajustez selon le nombre de sections */

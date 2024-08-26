@@ -9,30 +9,37 @@ document.addEventListener('DOMContentLoaded', function () {
         const viewportWidth = window.innerWidth;
         const targetScrollLeft = index * viewportWidth;
 
+        console.log(`Scrolling to index: ${index}`);
+        console.log(`Target scroll left: ${targetScrollLeft}`);
 
-
-        scrollContainer.scrollTo({
-            left: targetScrollLeft,
-            behavior: 'smooth'
-        });
+        // Ajout de la transformation pour l'animation
+        scrollContainer.style.transform = `translateX(-${targetScrollLeft}px)`;
 
         setTimeout(() => {
             isScrolling = false;
-        }, 100); // Réduire la durée si nécessaire
+        }, 1000); // La durée de l'animation CSS
     }
 
     // Gérer les événements de défilement de la souris
     window.addEventListener('wheel', function (event) {
-        const currentScrollLeft = scrollContainer.scrollLeft;
+        const currentScrollLeft = -parseFloat(scrollContainer.style.transform.replace('translateX(', '').replace('px)', '')) || 0;
+        const viewportWidth = window.innerWidth;
+        const totalWidth = scrollContainer.scrollWidth;
+        const totalSections = Math.floor(totalWidth / viewportWidth);
+        const currentIndex = Math.floor(currentScrollLeft / viewportWidth);
+
+        let nextIndex = currentIndex;
 
         if (event.deltaY > 0) {
-            const nextIndex = Math.min(Math.floor(currentScrollLeft / window.innerWidth) + 1, (scrollContainer.scrollWidth / window.innerWidth) - 1);
-            scrollToSection(nextIndex);
+            nextIndex = Math.min(currentIndex + 1, totalSections - 1);
+            console.log(`Scrolling down. Next index: ${nextIndex}`);
         } else {
-            const prevIndex = Math.max(Math.floor(currentScrollLeft / window.innerWidth) - 1, 0);
-            console.log('Previous Index:', prevIndex);
-            scrollToSection(prevIndex);
+            nextIndex = Math.max(currentIndex - 1, 0);
+            console.log(`Scrolling up. Previous index: ${nextIndex}`);
         }
+
+        scrollToSection(nextIndex);
         event.preventDefault();
     }, { passive: false });
+
 });
