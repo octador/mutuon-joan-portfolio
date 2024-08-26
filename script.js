@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         setTimeout(() => {
             isScrolling = false;
-        }, 1000); // La durée de l'animation CSS
+        }, 1000); 
     }
 
     // Gérer les événements de défilement de la souris
